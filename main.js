@@ -10,7 +10,7 @@ app.get('/', (req, res) =>{
  * req.path permet d'afficher le path actuel du fichier 
  */
 app.get('/about', (req, res) =>{
-    res.send(req.path);
+    res.send(`<a href=${req.path}>${req.path}</a>`);
 })
 
 app.get('/test.txt', (req, res) =>{
