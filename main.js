@@ -1,22 +1,24 @@
 const express = require('express');
+const fs = require('fs');
+const test_fs = require('./test_fs');
 const app = express();
 const port = 9090;
 
-app.get('/', (req, res) =>{
-    res.send("Hello World");
-})
+var array_dossier = fs.readdirSync("./");
 
-/**
- * req.path permet d'afficher le path actuel du fichier 
- */
-app.get('/about', (req, res) =>{
-    res.send(`<a href=${req.path}>${req.path}</a>`);
-})
 
-app.get('/test.txt', (req, res) =>{
-    res.send("test.txt");
-})
+app.get('/', (req, res)=>{
+    test_fs.affichage_contenu_dossier(array_dossier);
+    array_dossier.forEach(file =>{
+        if (fs.lstatSync(`./${file}/`).isDirectory())
+            console.log(fs.readdirSync(`./${file}/`));
+        else
+            console.log(file);
+        res.write(`<div href="./${file}">${file}</div>`, encoding='utf-8');
+    })
+    //res.write(`<div href="./${file}">${file}</div>`, encoding='utf-8');
+});
 
-app.listen(port, ()=>{
-    console.log(`Example app listening at port:${port}`);
-})
+app.listen(port, () =>{
+    console.log(`Actuellement en écoute sur le port ${port}`);
+});
