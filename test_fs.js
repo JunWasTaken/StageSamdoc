@@ -13,18 +13,18 @@ function affichage_dossier(array_dossier, res, path){
         console.log(file)
         if (fs.lstatSync(path_tmp).isDirectory()){
             //ouverture de la div principale 
-            res.write(`<div id=${file} onclick="reveal('${file}_content');">${file}`);
+            res.write(`<div id=${file} onclick="reveal('${file}_rep');">${file}`);
             //création du tableau secondaire contenant les sous-répertoires
             array_tmp = fs.readdirSync(path_tmp);
             //ouverture de la div secondaire
-            res.write(`<div style="margin-left: 5%;" id="${file}_content">`);
+            res.write(`<div style="margin-left: 5%;" id="${file}_rep">`);
             array_tmp.forEach(file =>{
                 try{
                     //appel récursif de la fonction pour afficher les sous-dossiers
                     affichage_dossier(array_tmp, res, path_tmp);
                 }catch(error){
                     //on affiche les fichiers problématiques en rouge, souvent lié à un fichier sans extension que le système considère comme des répertoires sans qu'il n'en soit
-                    res.write(`<div style="color:red" id=${file}>${file}</div>`);
+                    console.log(file);
                 }
             })
             //fermeture de la div secondaire
@@ -34,7 +34,7 @@ function affichage_dossier(array_dossier, res, path){
         }else{
             //affichage dans le cas où il s'agit d'un fichier simple
             console.log(file);
-            res.write(`<div id="${file}">${file}</div>`, encoding='utf-8');
+            res.write(`<div id="${file}_content">${file}</div>`, encoding='utf-8');
         }
     })
 }
