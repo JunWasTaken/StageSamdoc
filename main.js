@@ -16,7 +16,7 @@ function reveal(id){
 }
 
 app.get('/', (req, res)=>{
-    test_fs.affichage_contenu_dossier(array_dossier, res);
+    test_fs.affichage_contenu_dossier(array_dossier, res, "./");
     /*array_dossier.forEach(file =>{
         if (fs.lstatSync(`./${file}/`).isDirectory()){
             console.log(file);
