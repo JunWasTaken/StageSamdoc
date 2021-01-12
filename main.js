@@ -6,13 +6,13 @@ const port = 9090;
 
 var array_dossier = fs.readdirSync("./");
 
-
 app.get('/', (req, res)=>{
-    test_fs.affichage_contenu_dossier(array_dossier);
+    test_fs.affichage_contenu_dossier(array_dossier, res);
     array_dossier.forEach(file =>{
-        if (fs.lstatSync(`./${file}/`).isDirectory())
+        if (fs.lstatSync(`./${file}/`).isDirectory()){
+            res.write(`<div id=${file}>${file}`)
             console.log(fs.readdirSync(`./${file}/`));
-        else
+        }else
             console.log(file);
         res.write(`<div href="./${file}">${file}</div>`, encoding='utf-8');
     })

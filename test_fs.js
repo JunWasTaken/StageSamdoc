@@ -1,16 +1,20 @@
 const fs = require('fs');
 
 module.exports = {
-    affichage_contenu_dossier : function(array_dossier){
-        affichage_dossier(array_dossier);
+    affichage_contenu_dossier : function(array_dossier, res){
+        affichage_dossier(array_dossier, res);
     }
 }
 
-function affichage_dossier(array_dossier){
+function affichage_dossier(array_dossier, res){
     array_dossier.forEach(file =>{
-        if (fs.lstatSync(`./${file}/`).isDirectory())
+        try{
+            if (fs.lstatSync(`./${file}/`).isDirectory())
             affichage_dossier(fs.readdirSync(`./${file}/`));
         else
-            console.log(file);
+            res.write(file);
+        }catch(error){
+
+        }
     })
 }
