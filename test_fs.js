@@ -12,10 +12,10 @@ function affichage_dossier(array_dossier, path){
     array_dossier.forEach(file =>{
         var path_tmp = path+file+'/'
         if (fs.lstatSync(path_tmp).isDirectory()){
-            //ouverture de la div principale 
+            //ouverture de la div principale sous forme de carte
             return_array.push(`
             <div class="card, ml-5">
-            <img src="/test/images/folder.png" class="card-img-top" alt="logo dossier"> 
+            <img src="./test/images/folder.png" class="card-img-top" alt="logo dossier"> 
             <div class="card-body">
             <div id=${file} class="card-text" onclick="reveal('${file}_rep');">${file}`)
             //création du tableau secondaire contenant les sous-répertoires
