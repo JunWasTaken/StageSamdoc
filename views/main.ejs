@@ -11,11 +11,9 @@
             <h1>Bonjour</h1>
             <p>Ceci est une page de test</p>
         </div>
-        <img src="../test/images/folder.png">
+        <img src="../test/images/document.png">
         <% div.forEach(element => { %>
-            <div class="card">
                 <%- element %>
-            </div>
         <% }); %>
     </body>
     <footer>
@@ -29,10 +27,10 @@
         function reveal(id){
             element = document.getElementById(id);
             console.log(element);
-            if (window.getComputedStyle(element).visibility == "collapse")
-                element.style.visibility = "visible";
+            if (window.getComputedStyle(element).display == "none")
+                element.style.display = "block";
             else
-                element.style.visibility = "collapse";
+                element.style.display = "none";
         }
     </script>
 </html>
