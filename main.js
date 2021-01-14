@@ -7,7 +7,7 @@ var array = new Array();
 
 var array_dossier = fs.readdirSync("./");
 app.set('view engine', 'ejs');
-app.use(express.static("public"));
+app.use(express.static('public'));
 app.get('/', (req, res)=>{
     // on affecte le résultat de affichage_contenu_dossier dans le tableau array qui sera utilisé après 
     array.push(test_fs.affichage_contenu_dossier(array_dossier, "./"));
