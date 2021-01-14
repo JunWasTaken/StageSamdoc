@@ -8,12 +8,11 @@ var array = new Array();
 var array_dossier = fs.readdirSync("./");
 app.set('view engine', 'ejs');
 app.get('/', (req, res)=>{
-    array.push(test_fs.affichage_contenu_dossier(array_dossier, res, "./"));
-    //console.log(array);
+    array.push(test_fs.affichage_contenu_dossier(array_dossier, "./"));
     res.render('./main.ejs', {
         div:array
     });
-    //test_fs.affichage_contenu_dossier(array_dossier, res, "./");
+    console.log('page racine affichée')
 });
 
 app.listen(port, () =>{
