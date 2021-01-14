@@ -23,8 +23,7 @@ function affichage_dossier(array_dossier, res, path){
                     //appel récursif de la fonction pour afficher les sous-dossiers
                     affichage_dossier(array_tmp, res, path_tmp);
                 }catch(error){
-                    //on affiche les fichiers problématiques en rouge, souvent lié à un fichier sans extension que le système considère comme des répertoires sans qu'il n'en soit
-                    console.log(file);
+                    //le programme retourne une erreur pour les fichiers sans extensions car il les considère comme des dossiers.
                 }
             })
             //fermeture de la div secondaire
